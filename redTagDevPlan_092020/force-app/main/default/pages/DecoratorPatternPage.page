@@ -1,0 +1,22 @@
+<!--
+show list of Leads based on LastActivityDate and logged in user
+ability to create Task with for multiple records selected on a page
+-->
+<apex:page controller="DecoratorPatternCntr" 
+           sidebar="true" lightningStylesheets="true">
+    <apex:pageMessages />
+    <apex:form >
+    <apex:pageBlock title="Leads to contact: ">
+        <apex:pageBlockTable value="{!leadWrapList}" var="lWrap">
+            <apex:column >
+                <apex:inputCheckbox value="{!lWrap.isChecked}" id="checkbox"></apex:inputCheckbox>
+            </apex:column>
+            <apex:column value="{!lWrap.leadRecord.Name}"/>
+            <apex:column value="{!lWrap.leadRecord.City}"/>
+            <apex:column value="{!lWrap.leadRecord.Phone}"/>
+            <apex:column value="{!lWrap.leadRecord.Last_Activity_Date__c}" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+        <apex:commandButton action="{!createTasks}"  value="Add Tasks"/>
+    </apex:form>
+</apex:page>
